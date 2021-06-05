@@ -1,0 +1,106 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+#Operaciones Aritmeticas
+3+5
+8*5
+5-1
+(5 - 2) / 2
+2 ^ 5
+28 %% 6
+```
+
+```{r}
+#Variables
+x <- 10
+y <- 15
+total = x + y
+total
+
+mi_cadena <- "Mi texto"
+mi_booleano <- FALSE
+
+#Clase tipo de evento
+class(mi_booleano)
+class(mi_cadena)
+```
+
+```{r}
+#Vectores
+numericoVector <- c(1, 2, 3)
+caracterVector <- c("a", "b", "c")
+boleanoVector <- c(TRUE, FALSE, TRUE)
+numericoVector
+caracterVector
+boleanoVector
+
+some_vector <- c("John Doe", "poker player")
+names(some_vector) <- c("Name", "Profesion")
+some_vector
+
+primer_vector <- c(140, -50, 20, -120, 240)
+segundo_vector <- c(-24, -50, 100, -350, 10)
+
+names(primer_vector) <- c("Lunes", "Martes", "Miercoles", "Jueves", "Viernes")
+
+names(segundo_vector) <- c("Monday", "Tuesday", "Wednesday", "Thrsday", "Friday")
+
+primer_vector
+segundo_vector
+
+
+```
+
+```{r}
+#Comparando y Seleccionando
+edad <- 17
+edad >= 18
+
+vectorA <- c(1, 2, 3)
+vectorB <- c(4, 5, 6)
+
+totalVector <- vectorA + vectorB
+totalVector
+
+resultVector <- primer_vector + segundo_vector
+resultVector
+
+totalA <- sum(vectorA)
+totalA
+
+totalB <- sum(vectorB)
+totalB
+
+totalA + totalB
+
+vectorB[2]
+class(vectorB)
+
+primer_vector[c(1,3,5)]
+
+vectorMixto <- c("a", 2, FALSE, 3.5)
+vectorMixto
+
+primer_vector[2: 4]
+
+result_primervector <- primer_vector[c("Martes", "Viernes")]
+mean(result_primervector)
+
+selectprimervector <- primer_vector > 0
+selectprimervector
+
+winprimervector <- primer_vector[selectprimervector]
+winprimervector
+
+
+
+
+```
+
+
+
+
