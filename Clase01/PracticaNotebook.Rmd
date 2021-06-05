@@ -176,5 +176,48 @@ factor_temperature_vector
 
 ```
 
+```{r}
+#Niveles de un factor
+survey_vector <- c("M", "F", "F", "M", "M")
+factor_survey_vector <- factor(survey_vector)
 
+factor_survey_vector
+
+levels(factor_survey_vector) <- c("Female", "Male")
+
+factor_survey_vector
+
+```
+
+```{r}
+#Sumarización de factores
+
+summary(survey_vector)
+
+summary(factor_survey_vector)
+
+male <- factor_survey_vector[1]
+male
+
+female <- factor_survey_vector[2]
+female
+
+#male > female - no correcto se usa categorías ordinales
+
+speed_vector <- c("medium", "slow", "slow", "medium", "fast")
+factor_speed_vector <- factor(speed_vector, ordered = TRUE, levels = c("slow", "medium", "fast"))
+
+factor_speed_vector
+
+da2 <- factor_speed_vector[2]
+da3 <- factor_speed_vector[1]
+
+da2
+da3
+
+da2 < da3
+
+
+
+```
 
