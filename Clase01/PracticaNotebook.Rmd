@@ -51,8 +51,6 @@ names(segundo_vector) <- c("Monday", "Tuesday", "Wednesday", "Thrsday", "Friday"
 
 primer_vector
 segundo_vector
-
-
 ```
 
 ```{r}
@@ -95,12 +93,88 @@ selectprimervector
 
 winprimervector <- primer_vector[selectprimervector]
 winprimervector
+```
 
 
 
+```{r}
+#Matrices
+
+matrix(1:9, byrow=TRUE, nrow=3)
+matrix(1:9, byrow=FALSE, nrow=3)
+
+new_hope <- c(460.998, 314.4)
+empire_strike <- c(2980.475, 247.900)
+return_jedi <- c(309.306, 165.8)
+
+box_office <- c(new_hope, empire_strike, return_jedi)
+
+start_wars_matrix <- matrix(box_office, byrow = TRUE, nrow = 3)
+start_wars_matrix
+
+region <- c("US", "non-US")
+titles <- c("A new Hope", "The Empire Strikes Back", "Return of the Jedi")
+
+colnames(start_wars_matrix) <- region
+rownames(start_wars_matrix) <- titles
+
+start_wars_matrix
+```
+```{r}
+#ROWSUMS()
+
+worldwide_vector <- rowSums(start_wars_matrix)
+worldwide_vector
+
+all_wars_variable <- cbind(start_wars_matrix, worldwide_vector)
+all_wars_variable
+
+worldwide_cols <- colSums(all_wars_variable)
+worldwide_cols
+
+all_wars_variable <- rbind(all_wars_variable, worldwide_cols)
+all_wars_variable
 
 ```
 
+```{r}
+#Selección de elementos en matrices
+
+#non_us_all <- all_wars_variable[1:3,2]
+#non_us_all <- all_wars_variable[ ,2]
+#non_us_all <- all_wars_variable["A new Hope",2]
+
+non_us_all <- all_wars_variable[1:3,2]
+non_us_all
+
+mean(non_us_all)
+```
+
+```{r}
+#Aritmetica con matrices
+
+us_all <- all_wars_variable[1:3, 1]
+us_all
+us_all <- us_all * 0.12
+us_all
+
+```
+
+```{r}
+#Factores
+
+sex_vector <- c("Male", "Female", "Female", "Male", "Male")
+
+factor_sex_vector <- factor(sex_vector)
+factor_sex_vector
+
+
+temperature_vector <- c("High", "Low", "High", "Low", "Medium")
+
+factor_temperature_vector <- factor(temperature_vector, ordered = TRUE, levels = c("Low", "Medium", "High"))
+factor_temperature_vector
+
+```
 
 
 
