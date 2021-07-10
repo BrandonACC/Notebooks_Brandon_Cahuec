@@ -215,132 +215,190 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<p>Introduction to the Tidyverse</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnYXBtaW5kZXIpXG5saWJyYXJ5KGRwbHlyKVxuXG5nYXBtaW5kZXJcbmBgYCJ9 -->
-<pre class="r"><code>library(gapminder)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmxpYnJhcnkoZ2FwbWluZGVyKVxubGlicmFyeShkcGx5cilcblxuZ2FwbWluZGVyICU+JVxuICBzdW1tYXJpemUobWVkaWFuTGlmZUV4cCA9IG1lZGlhbihsaWZlRXhwKSlcblxuZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAxOTU3KSAlPiVcbiAgc3VtbWFyaXplKG1lZGlhbkxpZmVFeHAgPSBtZWRpYW4obGlmZUV4cCksIG1heChnZHBQZXJjYXApKVxuXG5gYGAifQ== -->
+<pre class="r"><code>library(tidyverse)
+
+library(gapminder)
 library(dplyr)
 
-gapminder</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Filtering</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JSBmaWx0ZXIoeWVhciA9PSAxOTU3KVxuYGBgIn0= -->
-<pre class="r"><code>gapminder %&gt;% filter(year == 1957)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Arrage</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JSBhcnJhbmdlKGxpZmVFeHApXG5nYXBtaW5kZXIgJT4lIGFycmFuZ2UoZGVzYyhsaWZlRXhwKSlcbmBgYCJ9 -->
-<pre class="r"><code>gapminder %&gt;% arrange(lifeExp)
-gapminder %&gt;% arrange(desc(lifeExp))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Firletring and Arraging</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JSBmaWx0ZXIoeWVhcj09MTk1NykgJT4lIGFycmFuZ2UoZGVzYyhwb3ApKVxuYGBgIn0= -->
-<pre class="r"><code>gapminder %&gt;% filter(year==1957) %&gt;% arrange(desc(pop))</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The verb mutate</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JSBtdXRhdGUobGlmZUV4cCA9IGxpZmVFeHAgKiAxMilcbmdhcG1pbmRlciAlPiUgbXV0YXRlKGxpZmVFeHBNb250aHMgPSBsaWZlRXhwICogMTIpXG5gYGAifQ== -->
-<pre class="r"><code>gapminder %&gt;% mutate(lifeExp = lifeExp * 12)
-gapminder %&gt;% mutate(lifeExpMonths = lifeExp * 12)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Combining filter, mutate and arrange</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAyMDA3KSAlPiVcbiAgbXV0YXRlKGxpZmVFeHBNb3VudGggPSBsaWZlRXhwICogMTIpICU+JVxuICBhcnJhbmdlKGRlc2MobGlmZUV4cE1vdW50aCkpXG5cbmBgYCJ9 -->
-<pre class="r"><code>gapminder %&gt;%
-  filter(year == 2007) %&gt;%
-  mutate(lifeExpMounth = lifeExp * 12) %&gt;%
-  arrange(desc(lifeExpMounth))
+gapminder %&gt;%
+  summarize(medianLifeExp = median(lifeExp))
+
+gapminder %&gt;%
+  filter(year == 1957) %&gt;%
+  summarize(medianLifeExp = median(lifeExp), max(gdpPercap))
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShnZ3Bsb3QyKVxuXG5nYXBtaW5kZXJfMTk1MiA8LSBnYXBtaW5kZXIgJT4lIGZpbHRlcih5ZWFyID09IDE5NTIgJiBjb250aW5lbnQgPT0gXCJBc2lhXCIpXG5nYXBtaW5kZXJfMTk1MiA8LSBnYXBtaW5kZXIgJT4lIGZpbHRlcih5ZWFyID09IDE5NTIpXG5nYXBtaW5kZXJfMTk1MlxuXG5nZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcCwgeT1nZHBQZXJjYXApKSArIGdlb21fcG9pbnQoKVxuXG5gYGAifQ== -->
-<pre class="r"><code>library(ggplot2)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBncm91cF9ieSh5ZWFyKSAlPiVcbiAgc3VtbWFyaXplKG1lZGlhbkxpZmVFeHAgPSBtZWRpYW4obGlmZUV4cCksIG1heChnZHBQZXJjYXApKVxuYGBgIn0= -->
+<pre class="r"><code>gapminder %&gt;%
+  group_by(year) %&gt;%
+  summarize(medianLifeExp = median(lifeExp), max(gdpPercap))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyICU+JVxuICBncm91cF9ieShjb250aW5lbnQsIHllYXIpICU+JVxuICBzdW1tYXJpemUobWVkaWFuTGlmZUV4cCA9IG1lZGlhbihsaWZlRXhwKSwgbWF4KGdkcFBlcmNhcCkpXG5nYXBtaW5kZXIgJT4lXG4gIGdyb3VwX2J5KHllYXIsIGNvbnRpbmVudCkgJT4lXG4gIHN1bW1hcml6ZShtZWRpYW5MaWZlRXhwID0gbWVkaWFuKGxpZmVFeHApLCBtYXgoZ2RwUGVyY2FwKSlcbmBgYCJ9 -->
+<pre class="r"><code>gapminder %&gt;%
+  group_by(continent, year) %&gt;%
+  summarize(medianLifeExp = median(lifeExp), max(gdpPercap))
+gapminder %&gt;%
+  group_by(year, continent) %&gt;%
+  summarize(medianLifeExp = median(lifeExp), max(gdpPercap))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnlfeWVhciA8LSBnYXBtaW5kZXIgJT4lXG4gIGdyb3VwX2J5KHllYXIpICU+JVxuICBzdW1tYXJpemUobWVkaWFuTGlmZUV4cCA9IG1lZGlhbihsaWZlRXhwKSwgbWF4KGdkcFBlcmNhcCkpXG5ieV95ZWFyXG5cbmdncGxvdChieV95ZWFyLCBhZXMoeD15ZWFyLCB5PW1lZGlhbkxpZmVFeHApKSArXG4gIGdlb21fcG9pbnQoKVxuXG5cblxuYGBgIn0= -->
+<pre class="r"><code>by_year &lt;- gapminder %&gt;%
+  group_by(year) %&gt;%
+  summarize(medianLifeExp = median(lifeExp), max(gdpPercap))
+by_year
 
-gapminder_1952 &lt;- gapminder %&gt;% filter(year == 1952 &amp; continent == &quot;Asia&quot;)
-gapminder_1952 &lt;- gapminder %&gt;% filter(year == 1952)
+ggplot(by_year, aes(x=year, y=medianLifeExp)) +
+  geom_point()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnlfeWVhcl9jb250aW5lbnQgPC0gZ2FwbWluZGVyICU+JVxuICBncm91cF9ieShjb250aW5lbnQsIHllYXIpICU+JVxuICBzdW1tYXJpemUobWVkaWFuR2RwUGVyY2EgPSBtZWRpYW4oZ2RwUGVyY2FwKSlcblxuYnlfeWVhcl9jb250aW5lbnRcblxuZ2dwbG90KGJ5X3llYXJfY29udGluZW50LCBhZXMoeD15ZWFyLCB5PW1lZGlhbkdkcFBlcmNhLCBjb2xvcj1jb250aW5lbnQpKSArXG4gIGdlb21fcG9pbnQoKVxuYGBgIn0= -->
+<pre class="r"><code>by_year_continent &lt;- gapminder %&gt;%
+  group_by(continent, year) %&gt;%
+  summarize(medianGdpPerca = median(gdpPercap))
+
+by_year_continent
+
+ggplot(by_year_continent, aes(x=year, y=medianGdpPerca, color=continent)) +
+  geom_point()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Type of visualizations</p>
+<p>Line Plots</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnlfeWVhciA8LSBnYXBtaW5kZXIgJT4lXG4gIGdyb3VwX2J5KHllYXIpICU+JVxuICBzdW1tYXJpemUobWVkaWFuR2RwUGVyY2FwID0gbWVkaWFuKGdkcFBlcmNhcCkpXG5ieV95ZWFyXG5cbmdncGxvdChieV95ZWFyLCBhZXMoeD15ZWFyLCB5PW1lZGlhbkdkcFBlcmNhcCkpICtcbiAgZ2VvbV9saW5lKClcblxuYGBgIn0= -->
+<pre class="r"><code>by_year &lt;- gapminder %&gt;%
+  group_by(year) %&gt;%
+  summarize(medianGdpPercap = median(gdpPercap))
+by_year
+
+ggplot(by_year, aes(x=year, y=medianGdpPercap)) +
+  geom_line()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYnlfeWVhcl9jb250aW5lbnQgPC0gZ2FwbWluZGVyICU+JVxuICBncm91cF9ieSh5ZWFyLCBjb250aW5lbnQpICU+JVxuICBzdW1tYXJpemUobWVkaWFuR2RwUGVyY2FwID0gbWVkaWFuKGdkcFBlcmNhcCkpXG5ieV95ZWFyX2NvbnRpbmVudFxuXG5nZ3Bsb3QoYnlfeWVhcl9jb250aW5lbnQsIGFlcyh4PXllYXIsIHk9bWVkaWFuR2RwUGVyY2FwLCBjb2xvcj1jb250aW5lbnQpKSArXG4gIGdlb21fbGluZSgpXG5cbmBgYCJ9 -->
+<pre class="r"><code>by_year_continent &lt;- gapminder %&gt;%
+  group_by(year, continent) %&gt;%
+  summarize(medianGdpPercap = median(gdpPercap))
+by_year_continent
+
+ggplot(by_year_continent, aes(x=year, y=medianGdpPercap, color=continent)) +
+  geom_line()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Bar Plots</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2NlYW5pXzE5NTIgPC0gZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoY29udGluZW50PT1cIk9jZWFuaWFcIiwgeWVhcj09MTk1Milcbm9jZWFuaV8xOTUyXG5cbmdncGxvdChvY2VhbmlfMTk1MixhZXMoeD1jb3VudHJ5LCB5ID0gZ2RwUGVyY2FwLCBmaWxsPWNvdW50cnkpKSArXG4gIGdlb21fY29sKClcblxuYGBgIn0= -->
+<pre class="r"><code>oceani_1952 &lt;- gapminder %&gt;%
+  filter(continent==&quot;Oceania&quot;, year==1952)
+oceani_1952
+
+ggplot(oceani_1952,aes(x=country, y = gdpPercap, fill=country)) +
+  geom_col()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Histograms</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyXzE5NTIgPC0gZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAxOTUyKSAlPiVcbiAgbXV0YXRlKHBvcF9ieV9taWwgPSBwb3AgLyAxMDAwMDAwKVxuXG5nYXBtaW5kZXJfMTk1MlxuXG5nZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcF9ieV9taWwpKSArXG4gIGdlb21faGlzdG9ncmFtKGJpbnM9NTApXG5cbmBgYCJ9 -->
+<pre class="r"><code>gapminder_1952 &lt;- gapminder %&gt;%
+  filter(year == 1952) %&gt;%
+  mutate(pop_by_mil = pop / 1000000)
+
 gapminder_1952
 
-ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) + geom_point()
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Log Scaling</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9Z2RwUGVyY2FwKSkgKyBnZW9tX3BvaW50KCkgKyBzY2FsZV94X2xvZzEwKClcbmdncGxvdChnYXBtaW5kZXJfMTk1MiwgYWVzKHg9cG9wLCB5PWdkcFBlcmNhcCkpICsgZ2VvbV9wb2ludCgpICsgc2NhbGVfeF9sb2cxMCgpICsgc2NhbGVfeV9sb2cxMCgpXG5gYGAifQ== -->
-<pre class="r"><code>ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) + geom_point() + scale_x_log10()
-ggplot(gapminder_1952, aes(x=pop, y=gdpPercap)) + geom_point() + scale_x_log10() + scale_y_log10()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Variable categorica</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9bGlmZUV4cCwgY29sb3I9Y29udGluZW50KSkgKyBnZW9tX3BvaW50KCkgKyBzY2FsZV94X2xvZzEwKCkgKyBzY2FsZV95X2xvZzEwKClcblxuXG5gYGAifQ== -->
-<pre class="r"><code>ggplot(gapminder_1952, aes(x=pop, y=lifeExp, color=continent)) + geom_point() + scale_x_log10() + scale_y_log10()
+ggplot(gapminder_1952, aes(x=pop_by_mil)) +
+  geom_histogram(bins=50)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9bGlmZUV4cCwgY29sb3IgPSBjb250aW5lbnQsIHNpemUgPSBnZHBQZXJjYXApKSArXG4gIGdlb21fcG9pbnQoKSArXG4gIHNjYWxlX3hfbG9nMTAoKVxuXG5gYGAifQ== -->
-<pre class="r"><code>ggplot(gapminder_1952, aes(x=pop, y=lifeExp, color = continent, size = gdpPercap)) +
-  geom_point() +
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyXzE5NTIgPC0gZ2FwbWluZGVyICU+JVxuICBmaWx0ZXIoeWVhciA9PSAxOTUyKVxuXG5nYXBtaW5kZXJfMTk1MlxuXG5nZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcCkpICtcbiAgZ2VvbV9oaXN0b2dyYW0oYmlucz01MCkgK1xuICBzY2FsZV94X2xvZzEwKClcblxuYGBgIn0= -->
+<pre class="r"><code>gapminder_1952 &lt;- gapminder %&gt;%
+  filter(year == 1952)
+
+gapminder_1952
+
+ggplot(gapminder_1952, aes(x=pop)) +
+  geom_histogram(bins=50) +
   scale_x_log10()
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Faceting</p>
+<p>Box Plots</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2FwbWluZGVyXzE5NTJcblxuZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9bGlmZUV4cCkpK1xuICBnZW9tX3BvaW50KCkrXG4gIHNjYWxlX3hfbG9nMTAoKSArXG4gIGZhY2V0X3dyYXAofiBjb250aW5lbnQpXG5cbmBgYCJ9 -->
-<pre class="r"><code>gapminder_1952
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5nYXBtaW5kZXJfMTk1MiA8LSBnYXBtaW5kZXIgJT4lXG4gIGZpbHRlcih5ZWFyID09IDE5NTIpXG5cbmdncGxvdChnYXBtaW5kZXJfMTk1MiwgYWVzKHg9Y29udGluZW50LCB5PWdkcFBlcmNhcCkpICtcbiAgZ2VvbV9ib3hwbG90KCkgK1xuICBzY2FsZV95X2xvZzEwKClcblxuYGBgIn0= -->
+<pre class="r"><code>
+gapminder_1952 &lt;- gapminder %&gt;%
+  filter(year == 1952)
 
-ggplot(gapminder_1952, aes(x=pop, y=lifeExp))+
-  geom_point()+
-  scale_x_log10() +
-  facet_wrap(~ continent)
+ggplot(gapminder_1952, aes(x=continent, y=gdpPercap)) +
+  geom_boxplot() +
+  scale_y_log10()
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Data manipulation with dplyr</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY291bnRyaWVzIDwtIHJlYWRfY3N2KCcuL2NvdW50aWVzLmNzdicpXG5cbmNvdW50cmllcyAlPiVcbiAgc2VsZWN0KHN0YXRlLCBjb3VudHksIHBvcHVsYXRpb24sIG1lbiwgd29tZW4pXG5cbmBgYCJ9 -->
+<pre class="r"><code>countries &lt;- read_csv(&#39;./counties.csv&#39;)
+
+countries %&gt;%
+  select(state, county, population, men, women)
 </code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KGdhcG1pbmRlciwgYWVzKHg9Z2RwUGVyY2FwLCB5PWxpZmVFeHApKStcbiAgZ2VvbV9wb2ludCgpK1xuICBzY2FsZV94X2xvZzEwKCkgK1xuICBmYWNldF93cmFwKH4geWVhcilcbmBgYCJ9 -->
-<pre class="r"><code>ggplot(gapminder, aes(x=gdpPercap, y=lifeExp))+
-  geom_point()+
-  scale_x_log10() +
-  facet_wrap(~ year)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY291bnRyaWVzICU+JVxuICBzZWxlY3Qoc3RhdGUsIGNvdW50eSwgcG9wdWxhdGlvbiwgbWVuLCB3b21lbikgJT4lXG4gIG11dGF0ZShwcm9wb3J0aW9uc19tZW4gPSBtZW4vcG9wdWxhdGlvbikgJT4lXG4gIGZpbHRlcihwb3B1bGF0aW9uID4gMTAwMDApICU+JVxuICBhcnJhbmdlKGRlc2MocHJvcG9ydGlvbnNfbWVuKSlcblxuYGBgIn0= -->
+<pre class="r"><code>countries %&gt;%
+  select(state, county, population, men, women) %&gt;%
+  mutate(proportions_men = men/population) %&gt;%
+  filter(population &gt; 10000) %&gt;%
+  arrange(desc(proportions_men))
+</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpJbnRyb2R1Y3Rpb24gdG8gdGhlIFRpZHl2ZXJzZQ0KYGBge3J9DQpsaWJyYXJ5KGdhcG1pbmRlcikNCmxpYnJhcnkoZHBseXIpDQoNCmdhcG1pbmRlcg0KYGBgDQoNCkZpbHRlcmluZw0KYGBge3J9DQpnYXBtaW5kZXIgJT4lIGZpbHRlcih5ZWFyID09IDE5NTcpDQpgYGANCg0KQXJyYWdlDQpgYGB7cn0NCmdhcG1pbmRlciAlPiUgYXJyYW5nZShsaWZlRXhwKQ0KZ2FwbWluZGVyICU+JSBhcnJhbmdlKGRlc2MobGlmZUV4cCkpDQpgYGANCg0KDQpGaXJsZXRyaW5nIGFuZCBBcnJhZ2luZw0KYGBge3J9DQpnYXBtaW5kZXIgJT4lIGZpbHRlcih5ZWFyPT0xOTU3KSAlPiUgYXJyYW5nZShkZXNjKHBvcCkpDQpgYGANCg0KVGhlIHZlcmIgbXV0YXRlDQpgYGB7cn0NCmdhcG1pbmRlciAlPiUgbXV0YXRlKGxpZmVFeHAgPSBsaWZlRXhwICogMTIpDQpnYXBtaW5kZXIgJT4lIG11dGF0ZShsaWZlRXhwTW9udGhzID0gbGlmZUV4cCAqIDEyKQ0KYGBgDQoNCg0KQ29tYmluaW5nIGZpbHRlciwgbXV0YXRlIGFuZCBhcnJhbmdlDQpgYGB7cn0NCmdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMjAwNykgJT4lDQogIG11dGF0ZShsaWZlRXhwTW91bnRoID0gbGlmZUV4cCAqIDEyKSAlPiUNCiAgYXJyYW5nZShkZXNjKGxpZmVFeHBNb3VudGgpKQ0KDQpgYGANCg0KYGBge3J9DQpsaWJyYXJ5KGdncGxvdDIpDQoNCmdhcG1pbmRlcl8xOTUyIDwtIGdhcG1pbmRlciAlPiUgZmlsdGVyKHllYXIgPT0gMTk1MiAmIGNvbnRpbmVudCA9PSAiQXNpYSIpDQpnYXBtaW5kZXJfMTk1MiA8LSBnYXBtaW5kZXIgJT4lIGZpbHRlcih5ZWFyID09IDE5NTIpDQpnYXBtaW5kZXJfMTk1Mg0KDQpnZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcCwgeT1nZHBQZXJjYXApKSArIGdlb21fcG9pbnQoKQ0KDQpgYGANCg0KDQpMb2cgU2NhbGluZw0KYGBge3J9DQpnZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcCwgeT1nZHBQZXJjYXApKSArIGdlb21fcG9pbnQoKSArIHNjYWxlX3hfbG9nMTAoKQ0KZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3AsIHk9Z2RwUGVyY2FwKSkgKyBnZW9tX3BvaW50KCkgKyBzY2FsZV94X2xvZzEwKCkgKyBzY2FsZV95X2xvZzEwKCkNCmBgYA0KDQpWYXJpYWJsZSBjYXRlZ29yaWNhDQpgYGB7cn0NCmdncGxvdChnYXBtaW5kZXJfMTk1MiwgYWVzKHg9cG9wLCB5PWxpZmVFeHAsIGNvbG9yPWNvbnRpbmVudCkpICsgZ2VvbV9wb2ludCgpICsgc2NhbGVfeF9sb2cxMCgpICsgc2NhbGVfeV9sb2cxMCgpDQoNCg0KYGBgDQoNCg0KYGBge3J9DQpnZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcCwgeT1saWZlRXhwLCBjb2xvciA9IGNvbnRpbmVudCwgc2l6ZSA9IGdkcFBlcmNhcCkpICsNCiAgZ2VvbV9wb2ludCgpICsNCiAgc2NhbGVfeF9sb2cxMCgpDQoNCmBgYA0KDQpGYWNldGluZw0KYGBge3J9DQpnYXBtaW5kZXJfMTk1Mg0KDQpnZ3Bsb3QoZ2FwbWluZGVyXzE5NTIsIGFlcyh4PXBvcCwgeT1saWZlRXhwKSkrDQogIGdlb21fcG9pbnQoKSsNCiAgc2NhbGVfeF9sb2cxMCgpICsNCiAgZmFjZXRfd3JhcCh+IGNvbnRpbmVudCkNCg0KYGBgDQoNCg0KYGBge3J9DQpnZ3Bsb3QoZ2FwbWluZGVyLCBhZXMoeD1nZHBQZXJjYXAsIHk9bGlmZUV4cCkpKw0KICBnZW9tX3BvaW50KCkrDQogIHNjYWxlX3hfbG9nMTAoKSArDQogIGZhY2V0X3dyYXAofiB5ZWFyKQ0KYGBgDQoNCg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlIgTm90ZWJvb2siDQpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7cn0NCmxpYnJhcnkodGlkeXZlcnNlKQ0KDQpsaWJyYXJ5KGdhcG1pbmRlcikNCmxpYnJhcnkoZHBseXIpDQoNCmdhcG1pbmRlciAlPiUNCiAgc3VtbWFyaXplKG1lZGlhbkxpZmVFeHAgPSBtZWRpYW4obGlmZUV4cCkpDQoNCmdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMTk1NykgJT4lDQogIHN1bW1hcml6ZShtZWRpYW5MaWZlRXhwID0gbWVkaWFuKGxpZmVFeHApLCBtYXgoZ2RwUGVyY2FwKSkNCg0KYGBgDQoNCg0KYGBge3J9DQpnYXBtaW5kZXIgJT4lDQogIGdyb3VwX2J5KHllYXIpICU+JQ0KICBzdW1tYXJpemUobWVkaWFuTGlmZUV4cCA9IG1lZGlhbihsaWZlRXhwKSwgbWF4KGdkcFBlcmNhcCkpDQpgYGANCg0KYGBge3J9DQpnYXBtaW5kZXIgJT4lDQogIGdyb3VwX2J5KGNvbnRpbmVudCwgeWVhcikgJT4lDQogIHN1bW1hcml6ZShtZWRpYW5MaWZlRXhwID0gbWVkaWFuKGxpZmVFeHApLCBtYXgoZ2RwUGVyY2FwKSkNCmdhcG1pbmRlciAlPiUNCiAgZ3JvdXBfYnkoeWVhciwgY29udGluZW50KSAlPiUNCiAgc3VtbWFyaXplKG1lZGlhbkxpZmVFeHAgPSBtZWRpYW4obGlmZUV4cCksIG1heChnZHBQZXJjYXApKQ0KYGBgDQoNCmBgYHtyfQ0KYnlfeWVhciA8LSBnYXBtaW5kZXIgJT4lDQogIGdyb3VwX2J5KHllYXIpICU+JQ0KICBzdW1tYXJpemUobWVkaWFuTGlmZUV4cCA9IG1lZGlhbihsaWZlRXhwKSwgbWF4KGdkcFBlcmNhcCkpDQpieV95ZWFyDQoNCmdncGxvdChieV95ZWFyLCBhZXMoeD15ZWFyLCB5PW1lZGlhbkxpZmVFeHApKSArDQogIGdlb21fcG9pbnQoKQ0KDQoNCg0KYGBgDQoNCmBgYHtyfQ0KYnlfeWVhcl9jb250aW5lbnQgPC0gZ2FwbWluZGVyICU+JQ0KICBncm91cF9ieShjb250aW5lbnQsIHllYXIpICU+JQ0KICBzdW1tYXJpemUobWVkaWFuR2RwUGVyY2EgPSBtZWRpYW4oZ2RwUGVyY2FwKSkNCg0KYnlfeWVhcl9jb250aW5lbnQNCg0KZ2dwbG90KGJ5X3llYXJfY29udGluZW50LCBhZXMoeD15ZWFyLCB5PW1lZGlhbkdkcFBlcmNhLCBjb2xvcj1jb250aW5lbnQpKSArDQogIGdlb21fcG9pbnQoKQ0KYGBgDQoNClR5cGUgb2YgdmlzdWFsaXphdGlvbnMNCg0KTGluZSBQbG90cw0KYGBge3J9DQpieV95ZWFyIDwtIGdhcG1pbmRlciAlPiUNCiAgZ3JvdXBfYnkoeWVhcikgJT4lDQogIHN1bW1hcml6ZShtZWRpYW5HZHBQZXJjYXAgPSBtZWRpYW4oZ2RwUGVyY2FwKSkNCmJ5X3llYXINCg0KZ2dwbG90KGJ5X3llYXIsIGFlcyh4PXllYXIsIHk9bWVkaWFuR2RwUGVyY2FwKSkgKw0KICBnZW9tX2xpbmUoKQ0KDQpgYGANCg0KDQpgYGB7cn0NCmJ5X3llYXJfY29udGluZW50IDwtIGdhcG1pbmRlciAlPiUNCiAgZ3JvdXBfYnkoeWVhciwgY29udGluZW50KSAlPiUNCiAgc3VtbWFyaXplKG1lZGlhbkdkcFBlcmNhcCA9IG1lZGlhbihnZHBQZXJjYXApKQ0KYnlfeWVhcl9jb250aW5lbnQNCg0KZ2dwbG90KGJ5X3llYXJfY29udGluZW50LCBhZXMoeD15ZWFyLCB5PW1lZGlhbkdkcFBlcmNhcCwgY29sb3I9Y29udGluZW50KSkgKw0KICBnZW9tX2xpbmUoKQ0KDQpgYGANCg0KQmFyIFBsb3RzDQoNCmBgYHtyfQ0Kb2NlYW5pXzE5NTIgPC0gZ2FwbWluZGVyICU+JQ0KICBmaWx0ZXIoY29udGluZW50PT0iT2NlYW5pYSIsIHllYXI9PTE5NTIpDQpvY2VhbmlfMTk1Mg0KDQpnZ3Bsb3Qob2NlYW5pXzE5NTIsYWVzKHg9Y291bnRyeSwgeSA9IGdkcFBlcmNhcCwgZmlsbD1jb3VudHJ5KSkgKw0KICBnZW9tX2NvbCgpDQoNCmBgYA0KDQpIaXN0b2dyYW1zDQpgYGB7cn0NCmdhcG1pbmRlcl8xOTUyIDwtIGdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMTk1MikgJT4lDQogIG11dGF0ZShwb3BfYnlfbWlsID0gcG9wIC8gMTAwMDAwMCkNCg0KZ2FwbWluZGVyXzE5NTINCg0KZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3BfYnlfbWlsKSkgKw0KICBnZW9tX2hpc3RvZ3JhbShiaW5zPTUwKQ0KDQpgYGANCg0KDQpgYGB7cn0NCmdhcG1pbmRlcl8xOTUyIDwtIGdhcG1pbmRlciAlPiUNCiAgZmlsdGVyKHllYXIgPT0gMTk1MikNCg0KZ2FwbWluZGVyXzE5NTINCg0KZ2dwbG90KGdhcG1pbmRlcl8xOTUyLCBhZXMoeD1wb3ApKSArDQogIGdlb21faGlzdG9ncmFtKGJpbnM9NTApICsNCiAgc2NhbGVfeF9sb2cxMCgpDQoNCmBgYA0KDQpCb3ggUGxvdHMNCmBgYHtyfQ0KDQpnYXBtaW5kZXJfMTk1MiA8LSBnYXBtaW5kZXIgJT4lDQogIGZpbHRlcih5ZWFyID09IDE5NTIpDQoNCmdncGxvdChnYXBtaW5kZXJfMTk1MiwgYWVzKHg9Y29udGluZW50LCB5PWdkcFBlcmNhcCkpICsNCiAgZ2VvbV9ib3hwbG90KCkgKw0KICBzY2FsZV95X2xvZzEwKCkNCg0KYGBgDQoNCkRhdGEgbWFuaXB1bGF0aW9uIHdpdGggZHBseXINCmBgYHtyfQ0KY291bnRyaWVzIDwtIHJlYWRfY3N2KCcuL2NvdW50aWVzLmNzdicpDQoNCmNvdW50cmllcyAlPiUNCiAgc2VsZWN0KHN0YXRlLCBjb3VudHksIHBvcHVsYXRpb24sIG1lbiwgd29tZW4pDQoNCmBgYA0KDQpgYGB7cn0NCmNvdW50cmllcyAlPiUNCiAgc2VsZWN0KHN0YXRlLCBjb3VudHksIHBvcHVsYXRpb24sIG1lbiwgd29tZW4pICU+JQ0KICBtdXRhdGUocHJvcG9ydGlvbnNfbWVuID0gbWVuL3BvcHVsYXRpb24pICU+JQ0KICBmaWx0ZXIocG9wdWxhdGlvbiA+IDEwMDAwKSAlPiUNCiAgYXJyYW5nZShkZXNjKHByb3BvcnRpb25zX21lbikpDQoNCmBgYA0KDQoNCg==</div>
 
 
 
@@ -387,7 +445,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("PracticaNotebook05.Rmd");
+  window.initializeSourceEmbed("Sesion_06.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
